@@ -115,7 +115,7 @@ public final class DeserializationConstructorAndReflectiveTypeAdapterFactory imp
       this.constructorFieldNamingPolicy = checkNotNull(deserializationFieldNamingPolicy,
             "deserializationFieldNamingPolicy");
       this.delegateFactory = new ReflectiveTypeAdapterFactory(constructorConstructor, checkNotNull(
-            serializationFieldNamingPolicy, "fieldNamingPolicy"), checkNotNull(excluder, "excluder"));
+            serializationFieldNamingPolicy, "fieldNamingPolicy"), checkNotNull(excluder, "excluder"), null);
    }
 
    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
