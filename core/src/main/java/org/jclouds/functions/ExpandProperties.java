@@ -79,6 +79,9 @@ public class ExpandProperties implements Function<Properties, Properties> {
             Matcher m = VAR.matcher(input);
             return !m.find();
          }
+         public boolean test(String input) {
+            return apply(input);
+         }
       });
    }
 

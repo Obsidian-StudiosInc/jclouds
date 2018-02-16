@@ -480,7 +480,9 @@ public class ContextBuilder {
          public boolean apply(Module input) {
             return input.getClass().isAnnotationPresent(ConfiguresHttpCommandExecutorService.class);
          }
-
+         public boolean test(Module input) {
+            return apply(input);
+         }
       });
    }
 
@@ -498,6 +500,9 @@ public class ContextBuilder {
       public boolean apply(Module input) {
          return input.getClass().isAnnotationPresent(ConfiguresHttpApi.class);
       }
+      public boolean test(Module input) {
+         return apply(input);
+       }
 
    };
 
@@ -526,6 +531,9 @@ public class ContextBuilder {
          public boolean apply(Module input) {
             return input.getClass().isAnnotationPresent(ConfiguresEventBus.class);
          }
+         public boolean test(Module input) {
+            return apply(input);
+         }
       }
 
       )) {
@@ -539,12 +547,18 @@ public class ContextBuilder {
          public boolean apply(Module input) {
             return input.getClass().isAnnotationPresent(ConfiguresExecutorService.class);
          }
+         public boolean test(Module input) {
+            return apply(input);
+         }
       }
 
       )) {
          if (any(modules, new Predicate<Module>() {
             public boolean apply(Module input) {
                return input.getClass().isAnnotationPresent(SingleThreaded.class);
+            }
+            public boolean test(Module input) {
+               return apply(input);
             }
          })) {
             modules.add(new ExecutorServiceModule(newDirectExecutorService()));
@@ -559,6 +573,9 @@ public class ContextBuilder {
       if (!any(modules, new Predicate<Module>() {
          public boolean apply(Module input) {
             return input.getClass().isAnnotationPresent(ConfiguresCredentialStore.class);
+         }
+         public boolean test(Module input) {
+            return apply(input);
          }
       }
 

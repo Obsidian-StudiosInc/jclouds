@@ -52,6 +52,10 @@ public class Throwables2 {
             return getFirstThrowableOfType(input, throwableType) != null;
          }
 
+         public boolean test(Throwable input) {
+            return apply(input);
+         }
+
          public String toString() {
             return "containsThrowable()";
          }

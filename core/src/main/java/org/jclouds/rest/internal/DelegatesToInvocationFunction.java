@@ -224,6 +224,9 @@ public class DelegatesToInvocationFunction<S, F extends Function<Invocation, Obj
       public boolean apply(Annotation input) {
          return input.annotationType().isAnnotationPresent(Qualifier.class);
       }
+      public boolean test(Annotation input) {
+         return apply(input);
+      }
    };
 
    private Object lookupValueFromGuice(Invokable<?, ?> invoked) {

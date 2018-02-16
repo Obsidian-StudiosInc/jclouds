@@ -200,6 +200,9 @@ public class Reflection2 {
                   public boolean apply(Invokable<?, ?> input) {
                      return Objects.equal(toClasses(input.getParameters()), key.parameterTypes);
                   }
+                  public boolean test(Invokable<?, ?> input) {
+                     return apply(input);
+                  }
                });
                if (constructor.isPresent())
                   return constructor.get();
@@ -269,6 +272,9 @@ public class Reflection2 {
                      // Invokable doesn't expose Method#isBridge
                      return !input.isSynthetic() && Objects.equal(input.getName(), key.name)
                            && Objects.equal(toClasses(input.getParameters()), key.parameterTypes);
+                  }
+                  public boolean test(Invokable<?, ?> input) {
+                     return apply(input);
                   }
                });
                checkArgument(method.isPresent(), "no such method %s in: %s", key.toString(), methods);
